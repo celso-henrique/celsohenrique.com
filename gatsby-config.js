@@ -4,7 +4,14 @@ require(`dotenv`).config({
 
 module.exports = {
   siteMetadata: {
-    siteTitleAlt: `Celso Henrique personal blog`
+    siteTitle: `Celso Henrique`,
+    siteImage: ``,
+    siteTitleAlt: `celsohenrique.com - Celso Henrique Personal Blog`,
+    siteHeadline: `celsohenrique.com - Celso Henrique Personal Blog`,
+    siteDescription: `celsohenrique.com - Celso Henrique Personal Blog`,
+    siteUrl: `https://celsohenrique.com`,
+    siteLanguage: `en`,
+    author: `@celsohenrique_`
   },
   plugins: [
     {
@@ -46,8 +53,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Celso Henrique personal blog`,
-        short_name: `Celso Henrique personal blog `,
+        name: `celsohenrique.com - Celso Henrique Personal Blog`,
+        short_name: `celsohenrique.com`,
         description: `Celso Henrique personal blog`,
         start_url: `/`,
         background_color: `#fff`,
