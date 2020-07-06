@@ -6,11 +6,11 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Celso Henrique`,
     siteImage: ``,
-    siteTitleAlt: `celsohenrique.com - Celso Henrique Personal Blog`,
-    siteHeadline: `celsohenrique.com - Celso Henrique Personal Blog`,
-    siteDescription: `celsohenrique.com - Celso Henrique Personal Blog`,
+    siteTitleAlt: `celsohenrique.com - Celso Henrique Blog Pessoal`,
+    siteHeadline: `celsohenrique.com - Celso Henrique Blog Pessoal`,
+    siteDescription: `celsohenrique.com - Celso Henrique Blog Pessoal`,
     siteUrl: `https://celsohenrique.com`,
-    siteLanguage: `en`,
+    siteLanguage: `pt-br`,
     author: `@celsohenrique_`
   },
   plugins: [
@@ -23,8 +23,8 @@ module.exports = {
             slug: `/blog`
           },
           {
-            title: `About`,
-            slug: `/about`
+            title: `Sobre`,
+            slug: `/sobre`
           }
         ],
         externalLinks: [
@@ -53,9 +53,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `celsohenrique.com - Celso Henrique Personal Blog`,
+        name: `celsohenrique.com - Celso Henrique Blog Pessoal`,
         short_name: `celsohenrique.com`,
-        description: `Celso Henrique personal blog`,
+        description: `Celso Henrique Blog Pessoal`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#2d3748`,

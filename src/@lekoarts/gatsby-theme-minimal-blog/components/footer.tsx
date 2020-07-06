@@ -21,28 +21,24 @@ const Footer = () => {
       }}
     >
       <div>
-        &copy; {new Date().getFullYear()} by {siteTitle}. All rights reserved.
+        &copy; {new Date().getFullYear()} por {siteTitle}. Todos direitos reservados.
       </div>
       <div>
-        {` `} 
-        Using 
-        {` `}
+        {`Usando `} 
         <Link
-          aria-label="Link to Gatsby page"
+          aria-label="Link para a página do Gatsby"
           href="https://www.gatsbyjs.org/">
           Gatsby  
         </Link>
-        {` and `}
+        {` e `}
         <Link
-          aria-label="Link to the theme's GitHub repository"
+          aria-label="Link para o repositório no GitHub do tema"
           href="https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-minimal-blog"
         >
-          theme
+        tema
         </Link>
-        {` `}
-        by
-        {` `}
-        <Link aria-label="Link to the theme author's website" href="https://www.lekoarts.de/en">
+        {` por `}
+        <Link aria-label="Link para o site do autor do tema" href="https://www.lekoarts.de/en">
           LekoArts
         </Link>
         {` ❤️  `}
