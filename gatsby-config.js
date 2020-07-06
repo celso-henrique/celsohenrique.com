@@ -58,7 +58,7 @@ module.exports = {
         description: `Celso Henrique personal blog`,
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#6B46C1`,
+        theme_color: `#2d3748`,
         display: `standalone`,
         icons: [
           {
