@@ -52,7 +52,7 @@ const Post = ({ data: { post } }: PostProps) => (
         </React.Fragment>
       )}
       {post.timeToRead && ` — `}
-      {post.timeToRead && <span>{post.timeToRead} min lendo</span>}
+      {post.timeToRead && <span>{post.timeToRead} min de leitura</span>}
     </p>
     <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
       <MDXRenderer>{post.body}</MDXRenderer>
