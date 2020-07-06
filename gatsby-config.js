@@ -6,9 +6,9 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Celso Henrique`,
     siteImage: ``,
-    siteTitleAlt: `celsohenrique.com - Celso Henrique Blog Pessoal`,
-    siteHeadline: `celsohenrique.com - Celso Henrique Blog Pessoal`,
-    siteDescription: `celsohenrique.com - Celso Henrique Blog Pessoal`,
+    siteTitleAlt: `celsohenrique.com | Blog pessoal do Celso Henrique`,
+    siteHeadline: `celsohenrique.com | Blog pessoal do Celso Henrique`,
+    siteDescription: `Blog pessoal do Celso Henrique`,
     siteUrl: `https://celsohenrique.com`,
     siteLanguage: `pt-br`,
     author: `@celsohenrique_`
@@ -53,9 +53,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `celsohenrique.com - Celso Henrique Blog Pessoal`,
+        name: `celsohenrique.com | Blog pessoal do Celso Henrique`,
         short_name: `celsohenrique.com`,
-        description: `Celso Henrique Blog Pessoal`,
+        description: `Blog pessoal do Celso Henrique`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#2d3748`,
