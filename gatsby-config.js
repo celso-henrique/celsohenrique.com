@@ -39,6 +39,10 @@ module.exports = {
           {
             name: `GitHub`,
             url: `https://github.com/celso-henrique`
+          },
+          {
+            name: `Rss`,
+            url: `/rss.xml`
           }
         ]
       }
