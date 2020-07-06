@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import { jsx, Heading, Link as TLink } from "theme-ui"
-import { Link } from "gatsby"
-import { Flex } from "@theme-ui/components"
-import Layout from "./layout"
-import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing"
-import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config"
-import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes"
-import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
+import { jsx, Heading, Link as TLink } from "theme-ui";
+import { Link } from "gatsby";
+import { Flex } from "@theme-ui/components";
+import Layout from "./layout";
+import Listing from "@lekoarts/gatsby-theme-minimal-blog/src/components/listing";
+import useMinimalBlogConfig from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-minimal-blog-config";
+import replaceSlashes from "@lekoarts/gatsby-theme-minimal-blog/src/utils/replaceSlashes";
+import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
 
 type PostsProps = {
   posts: {
@@ -21,10 +21,10 @@ type PostsProps = {
       slug: string
     }[]
   }[]
-}
+};
 
 const Blog = ({ posts }: PostsProps) => {
-  const { tagsPath, basePath } = useMinimalBlogConfig()
+  const { tagsPath, basePath } = useMinimalBlogConfig();
 
   return (
     <Layout>
@@ -37,7 +37,7 @@ const Blog = ({ posts }: PostsProps) => {
       </Flex>
       <Listing posts={posts} sx={{ mt: [4, 5] }} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

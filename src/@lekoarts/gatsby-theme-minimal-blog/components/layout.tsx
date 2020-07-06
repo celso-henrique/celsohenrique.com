@@ -1,15 +1,15 @@
 /** @jsx jsx */
-import React from "react"
-import { Global } from "@emotion/core"
-import { Box, Container, jsx } from "theme-ui"
-import "typeface-ibm-plex-sans"
-import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
-import Header from "@lekoarts/gatsby-theme-minimal-blog/src/components/header"
-import Footer from "@lekoarts/gatsby-theme-minimal-blog/src/components/footer"
-import CodeStyles from "@lekoarts/gatsby-theme-minimal-blog/src/styles/code"
-import SkipNavLink from "@lekoarts/gatsby-theme-minimal-blog/src/components/skip-nav"
+import React from "react";
+import { Global } from "@emotion/core";
+import { Box, Container, jsx } from "theme-ui";
+import "typeface-ibm-plex-sans";
+import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
+import Header from "@lekoarts/gatsby-theme-minimal-blog/src/components/header";
+import Footer from "@lekoarts/gatsby-theme-minimal-blog/src/components/footer";
+import CodeStyles from "@lekoarts/gatsby-theme-minimal-blog/src/styles/code";
+import SkipNavLink from "@lekoarts/gatsby-theme-minimal-blog/src/components/skip-nav";
 
-type LayoutProps = { children: React.ReactNode; className?: string }
+type LayoutProps = { children: React.ReactNode; className?: string };
 
 const Layout = ({ children, className = `` }: LayoutProps) => (
   <React.Fragment>
@@ -51,6 +51,6 @@ const Layout = ({ children, className = `` }: LayoutProps) => (
       <Footer />
     </Container>
   </React.Fragment>
-)
+);
 
-export default Layout
+export default Layout;
