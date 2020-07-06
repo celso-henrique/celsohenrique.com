@@ -37,7 +37,7 @@ module.exports = {
             url: `https://www.linkedin.com/in/devfrontend/`
           },
           {
-            name: `Github`,
+            name: `GitHub`,
             url: `https://github.com/celso-henrique`
           }
         ]
