@@ -5,10 +5,10 @@ require(`dotenv`).config({
 module.exports = {
   siteMetadata: {
     siteTitle: `Celso Henrique`,
-    siteImage: ``,
-    siteTitleAlt: `celsohenrique.com | Blog pessoal do Celso Henrique`,
-    siteHeadline: `celsohenrique.com | Blog pessoal do Celso Henrique`,
-    siteDescription: `Blog pessoal do Celso Henrique`,
+    siteImage: `/banner.jpg`,
+    siteTitleAlt: `celsohenrique.com | Blog pessoal`,
+    siteHeadline: `celsohenrique.com | Blog pessoal`,
+    siteDescription: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
     siteUrl: `https://celsohenrique.com`,
     siteLanguage: `pt-br`,
     author: `@celsohenrique_`
@@ -39,10 +39,6 @@ module.exports = {
           {
             name: `GitHub`,
             url: `https://github.com/celso-henrique`
-          },
-          {
-            name: `Rss`,
-            url: `/rss.xml`
           }
         ]
       }
@@ -57,9 +53,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `celsohenrique.com | Blog pessoal do Celso Henrique`,
+        name: `celsohenrique.com | Blog pessoal`,
         short_name: `celsohenrique.com`,
-        description: `Blog pessoal do Celso Henrique`,
+        description: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#2d3748`,
