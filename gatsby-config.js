@@ -6,8 +6,8 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Celso Henrique`,
     siteImage: `/banner.jpg`,
-    siteTitleAlt: `celsohenrique.com | Blog pessoal`,
-    siteHeadline: `celsohenrique.com | Blog pessoal`,
+    siteTitleAlt: `Celso Henrique`,
+    siteHeadline: `Celso Henrique`,
     siteDescription: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
     siteUrl: `https://celsohenrique.com`,
     siteLanguage: `pt-br`,
@@ -53,8 +53,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `celsohenrique.com | Blog pessoal`,
-        short_name: `celsohenrique.com`,
+        name: `Celso Henrique`,
+        short_name: `Celso Henrique`,
         description: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
         start_url: `/`,
         background_color: `#fff`,
