@@ -1,12 +1,10 @@
 /** @jsx jsx */
 import { jsx, Heading } from "theme-ui";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { DiscussionEmbed } from "disqus-react";
 import React from "react";
 import Layout from "./layout";
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags";
 import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
-import useSiteMetadata from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-site-metadata";
 
 type PostProps = {
   data: {
@@ -37,14 +35,6 @@ const px = [`32px`, `16px`, `8px`, `4px`];
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);
 
 const Post = ({ data: { post }}: PostProps) => {
-  const { siteUrl } = useSiteMetadata();
-  const url = siteUrl + post.slug;
-
-  const disqusConfig = {
-    shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: url, title: post.title, url }
-  };
-
   return (
     <Layout>
       <SEO
@@ -68,7 +58,8 @@ const Post = ({ data: { post }}: PostProps) => {
       <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
-      <DiscussionEmbed {...disqusConfig} />
+      <script defer src="https://cdn.commento.io/js/commento.js"></script>
+      <div id="commento"></div>
     </Layout>
   );
 }
