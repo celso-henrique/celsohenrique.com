@@ -5,6 +5,7 @@ import React from "react";
 import Layout from "./layout";
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags";
 import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
+import HyvorTalk from 'hyvor-talk-react';
 
 type PostProps = {
   data: {
@@ -58,6 +59,7 @@ const Post = ({ data: { post }}: PostProps) => {
       <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
+      <HyvorTalk.Embed websiteId={1322} />
     </Layout>
   );
 }
