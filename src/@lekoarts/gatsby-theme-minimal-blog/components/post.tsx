@@ -59,7 +59,7 @@ const Post = ({ data: { post }}: PostProps) => {
       <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
-      <div id="commento"></div>
+      <div id="commento" data-no-font="true"></div>
       <Helmet>
         <script defer src="https://cdn.commento.io/js/commento.js"></script>
       </Helmet>
