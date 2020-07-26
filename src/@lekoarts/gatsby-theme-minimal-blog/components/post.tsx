@@ -2,6 +2,7 @@
 import { jsx, Heading } from "theme-ui";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
+import { Helmet } from "react-helmet";
 import Layout from "./layout";
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags";
 import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
@@ -58,8 +59,10 @@ const Post = ({ data: { post }}: PostProps) => {
       <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
-      <script defer src="https://cdn.commento.io/js/commento.js"></script>
       <div id="commento"></div>
+      <Helmet>
+        <script defer src="https://cdn.commento.io/js/commento.js"></script>
+      </Helmet>
     </Layout>
   );
 }
