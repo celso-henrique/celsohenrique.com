@@ -6,6 +6,7 @@ import React from "react";
 import Layout from "./layout";
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags";
 import SEO from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo";
+import useSiteMetadata from "@lekoarts/gatsby-theme-minimal-blog/src/hooks/use-site-metadata";
 
 type PostProps = {
   data: {
@@ -36,9 +37,11 @@ const px = [`32px`, `16px`, `8px`, `4px`];
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);
 
 const Post = ({ data: { post }}: PostProps) => {
+  const { siteUrl } = useSiteMetadata();
+
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: post.slug, title: post.title }
+    config: { identifier: post.slug, title: post.title, url: siteUrl + post.slug }
   }
 
   return (
