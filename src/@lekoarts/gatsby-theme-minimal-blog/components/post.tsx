@@ -38,7 +38,7 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);
 const Post = ({ data: { post }}: PostProps) => {
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: post.slug, title: post.title, url: window.location.href.split('?')[0] }
+    config: { identifier: post.slug, title: post.title }
   }
 
   return (
