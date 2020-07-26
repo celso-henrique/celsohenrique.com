@@ -38,11 +38,12 @@ const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);
 
 const Post = ({ data: { post }}: PostProps) => {
   const { siteUrl } = useSiteMetadata();
+  const url = siteUrl + post.slug;
 
   const disqusConfig = {
     shortname: process.env.GATSBY_DISQUS_NAME,
-    config: { identifier: post.slug, title: post.title, url: siteUrl + post.slug }
-  }
+    config: { identifier: url, title: post.title, url }
+  };
 
   return (
     <Layout>
