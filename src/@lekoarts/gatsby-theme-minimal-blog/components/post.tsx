@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading } from "theme-ui";
+import { jsx, Heading, useThemeUI } from "theme-ui";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
 import Layout from "./layout";
@@ -36,6 +36,8 @@ const px = [`32px`, `16px`, `8px`, `4px`];
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.15) 0px ${v} ${v} 0px`);
 
 const Post = ({ data: { post }}: PostProps) => {
+  const { colorMode, theme: { colors } } = useThemeUI();
+
   return (
     <Layout>
       <SEO
@@ -59,7 +61,20 @@ const Post = ({ data: { post }}: PostProps) => {
       <section sx={{ my: 5, ".gatsby-resp-image-wrapper": { my: [4, 4, 5], boxShadow: shadow.join(`, `) } }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
-      <HyvorTalk.Embed websiteId={1322} />
+      <HyvorTalk.Embed
+        websiteId={1322}
+        key={colorMode}
+        palette={{
+          accent: colors.heading,
+          accentText: colors.white,
+          footerHeader: colors.boxHeader,
+          footerHeaderText: colors.text,
+          box: colors.boxBackground,
+          boxText: colors.text,
+          boxLightText: colors.textMuted,
+          backgroundText: colors.text
+        }}
+      />
     </Layout>
   );
 }

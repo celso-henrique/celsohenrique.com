@@ -14,7 +14,9 @@ const theme = merge(originalTheme, {
         background: tailwind.colors.white,
         heading: `#db7093`,
         divide: tailwind.colors.gray[4],
-        muted: tailwind.colors.gray[3]
+        muted: tailwind.colors.gray[3],
+        boxBackground: tailwind.colors.white,
+        boxHeader: tailwind.colors.gray[1]
       },
       dark: {
         text: tailwind.colors.gray[4],
@@ -24,7 +26,9 @@ const theme = merge(originalTheme, {
         background: `#1A202C`,
         heading: `#db7093`,
         divide: tailwind.colors.gray[8],
-        muted: tailwind.colors.gray[8]
+        muted: tailwind.colors.gray[8],
+        boxBackground: `#171c27`,
+        boxHeader: tailwind.colors.gray[8]
       }
     }
   }
