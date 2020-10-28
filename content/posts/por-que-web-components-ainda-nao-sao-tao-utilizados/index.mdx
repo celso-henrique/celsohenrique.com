@@ -1,0 +1,239 @@
+---
+title: "Por que web components ainda não são tão utilizados?"
+date: 2020-10-28
+slug: "/por-que-web-components-ainda-nao-sao-tao-utilizados"
+tags:
+ - web components
+ - javascript
+ - frontend
+---
+
+Web components foram introduzidos pela primeira vez em 2011 pelo Alex Russell em sua [apresentação no fronteers](https://fronteers.nl/congres/2011/sessions/web-components-and-model-driven-views-alex-russell) e de lá pra cá vimos surgirem diversas bibliotecas, frameworks e conteúdos sobre o tema. Eu mesmo falei muito sobre, utilizei de maneira prática e não existem dúvidas de que podemos extrair diversos benefícios deles. Então por que ainda é tão incomum ver esta tecnologia sendo utilizada?
+
+Meu objetivo aqui é abordar os principais pontos que, na minha perspectiva, influenciam negativamente na escolha desta tecnologia.
+
+## 1 - Histórico, amadurecimento e surgimento de bibliotecas
+
+Assim como ao longo dos anos vimos diversas funcionalidades que foram incorporadas ao JavaScript sendo simplificadas e testadas por hypersets ou bibliotecas, com web components não foi diferente. Observe a complexidade para escrever um web component antes do ES6 surgir:
+
+```html
+<!-- Defines element markup -->
+<template>
+    <p>Hello <strong></strong> :)</p>
+</template>
+
+<script>
+(function(window, document, undefined) {
+    // Refers to the "importer", which is index.html
+    var thatDoc = document;
+
+    // Refers to the "importee", which is src/hello-world.html
+    var thisDoc =  (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+
+    // Gets content from <template>
+    var template = thisDoc.querySelector('template').content;
+
+    // Creates an object based in the HTML Element prototype
+    var MyElementProto = Object.create(HTMLElement.prototype);
+
+    // Creates the "who" attribute and sets a default value
+    MyElementProto.who = 'World';
+
+    // Fires when an instance of the element is created
+    MyElementProto.createdCallback = function() {
+        // Creates the shadow root
+        var shadowRoot = this.createShadowRoot();
+
+        // Adds a template clone into shadow root
+        var clone = thatDoc.importNode(template, true);
+        shadowRoot.appendChild(clone);
+
+        // Caches <strong> DOM query
+        this.strong = shadowRoot.querySelector('strong');
+
+        // Checks if the "who" attribute has been overwritten
+        if (this.hasAttribute('who')) {
+            var who = this.getAttribute('who');
+            this.setWho(who);
+        }
+        else {
+            this.setWho(this.who);
+        }
+    };
+
+    // Fires when an attribute was added, removed, or updated
+    MyElementProto.attributeChangedCallback = function(attr, oldVal, newVal) {
+        if (attr === 'who') {
+            this.setWho(newVal);
+        }
+    };
+
+    // Sets new value to "who" attribute
+    MyElementProto.setWho = function(val) {
+        this.who = val;
+
+        // Sets "who" value into <strong>
+        this.strong.textContent = this.who;
+    };
+
+    // Registers <hello-world> in the main document
+    window.MyElement = thatDoc.registerElement('hello-world', {
+        prototype: MyElementProto
+    });
+})(window, document);
+</script>
+```
+
+O Polymer foi um early adopter das especificações e tornava na teoria isto mais fácil combinando abstrações com polyfills para maior suporte. Veja abaixo o mesmo código acima, mas agora com Polymer:
+
+```html
+<!-- Imports polymer -->
+<link rel="import" href="../polymer/polymer.html">
+
+<!-- Defines element markup -->
+<dom-module id="hello-world">
+    <template>
+        <p>Hello <strong>{{who}}</strong> :)</p>
+    </template>
+</dom-module>
+
+<!-- Registers custom element -->
+<script>
+Polymer({
+    is: 'hello-world',
+    properties: {
+        who: {
+            type: String,
+            value: 'World'
+        }
+    }
+});
+</script>
+```
+
+O problema é que além de um conceito novo e de certa forma complexo, utilizar o Polymer impactava drasticamente no tempo de carregamento das páginas devido a quantidade de polyfills, causando [memory leaks](https://github.com/webcomponents/webcomponentsjs/issues/541) em alguns navegadores (como no finado IE11).
+
+Em contra partida tínhamos como alternativa: o muito usado e simples jQuery, Backbone.js que era muito leve, Angular.js que ganhava popularidade, entre diversos outros frameworks e bibliotecas que surgiam pra facilitar a manipulação do DOM. A demora na evolução das especificações oficiais e de um maior suporte dos navegadores fez com que o projeto Polymer tivesse uma manutenção e evolução mais sofrida que a sua concorrência, tornando sua adoção menos atrativa e consequentemente criando um estigma sobre os web components.
+
+Hoje apesar do suporte ser amplo e a escrita de um componente ser muito mais simples graças ao ES6, o reflexo deste passado pode ser visto ao observar o mercado que adotou majoritariamente frameworks e / ou bibliotecas para esta tarefa.
+
+## 2 - Complexidade ao lidar com propriedades, atributos e eventos
+
+Manipular propriedades, atributos e eventos dos componentes pode ser uma tarefa complexa, mesmo que você seja uma uma pessoa acostumada a lidar com atributos no seu framework favorito, com event bubbling e capturing no JavaScript. Controlar uma propriedade de um nó do DOM nas bibliotecas atuais não é algo tão comum (dependendo do projeto claro), quando temos que criar uma referência para um nó, consequentemente temos um aumento na complexidade de um componente e sua manutenção.
+
+Ao utilizar web components manipulação de propriedades é algo muito comum e é mais comum ainda termos que controlar como elas irão se comportar juntamente aos atributos (maneira mais utilizada nas bibliotecas e frameworks da atualidade). Veja no exemplo abaixo:
+
+```javascript
+class Adder extends HTMLElement {
+  constructor() {
+    super();
+
+    this.attachShadow({ mode: 'open' });
+
+    this.shadowRoot.innerHTML = `
+      <input type="number">
+      <input type="number">
+      <p></p>
+    `;
+
+    this.inputs = this.shadowRoot.querySelectorAll('input');
+    this.p = this.shadowRoot.querySelector('p');
+
+    this.update();
+
+    this.inputs[0].addEventListener('input', e => {
+      this.a = +e.target.value;
+    });
+
+    this.inputs[1].addEventListener('input', e => {
+      this.b = +e.target.value;
+    });
+  }
+
+  static get observedAttributes() {
+    return ['a', 'b'];
+  }
+
+  get a() {
+    return +this.getAttribute('a');
+  }
+
+  set a(value) {
+    this.setAttribute('a', value);
+  }
+
+  get b() {
+    return +this.getAttribute('b');
+  }
+
+  set b(value) {
+    this.setAttribute('b', value);
+  }
+
+  attributeChangedCallback() {
+    this.update();
+  }
+
+  update() {
+    this.inputs[0].value = this.a;
+    this.inputs[1].value = this.b;
+
+    this.p.textContent = `${this.a} + ${this.b} = ${this.a + this.b}`;
+  }
+}
+
+customElements.define('my-adder', Adder);
+```
+
+Tudo isso para controlar e manter duas propriedades e atributos com uma referência única.  E ainda não falamos sobre emissão de eventos, em qual momento emitimos os eventos? Como capturar eventos customizados com as tecnologias atuais? Estes são questionamentos que qualquer pessoa que tenha desenvolvido web components já teve.
+
+Claro que existem bibliotecas construídas para abstrair toda essa complexidade, mas iremos cair naquele questionamento: "Se estamos usando web components por que utilizar uma biblioteca para abstrair? Não seria mais fácil utilizar React por exemplo, que é uma tecnologia conhecida pelo mercado?" - Um questionamento muitas vezes enviesado pelo primeiro tópico abordado.
+
+## 3 - Testes
+
+Com a evolução do front-end e consequentemente sua complexidade e responsabilidades, vimos a popularização dos testes e o surgimento de ferramentas para executá-los. Lembro de ter visto pela primeira vez no livro "Segredos do Ninja JavaScript" maneiras de realizar testes unitários e ter ficado encantado na época. Os testes durante um bom tempo rodavam em um navegador real ou headless, o que tornava a tarefa de testar web components possível desde que estes navegadores suportassem as suas especificações ou tivéssemos os polyfills.
+
+Com o aumento da quantidade de testes e a popularização das ferramentas para CI/CD apareceu a necessidade de algo que tivesse uma performance melhor do que executar um navegador inteiro somente para os testes, surgindo então as representações do DOM utilizando apenas JavaScript como o jsdom,  tornando possível executar os testes unitários utilizando apenas Node.js para isso. O Jest (ambiente de testes amplamente utilizado pelo React) foi um dos que utilizou-se do jsdom para tornar a execução dos testes com React mais simples e performática. 
+
+O problema disso tudo é que até fevereiro deste ano o jsdom não suportava as especificações dos web components (https://github.com/jsdom/jsdom/issues/1030) fazendo com que se você quisesse rodar os testes unitários tivesse que recorrer a alternativas com navegadores reais como o Karma, impactando diretamente na performance dos testes e sua complexidade. Hoje já não é um problema, mas nem todo mundo sabe disso por ser algo recente.
+
+## 4 - Server side rendering
+
+Bom, lendo o tópico anterior podemos concluir que se existe a possibilidade de utilizar o Node.js como ambiente para os nossos web components, consequentemente podemos também fazer server side rendering, não?
+
+Na verdade não, apesar de podermos executar os web components no Node.js utilizando jsdom, não existia até este ano uma proposta para representar o shadow dom de uma maneira declarativa, padronizada e que utilizasse apenas HTML, tornando a tarefa de atribuir um shadow dom para um elemento apenas possível após a execução do JavaScript e inviabilizando a possibilidade de termos um componente com shadow dom transferido do servidor para nossa aplicação front-end com seus nós representados.
+
+Como falei antes, já temos uma [proposta](https://github.com/mfreed7/declarative-shadow-dom/blob/master/README.md) que pode ser testada usando uma flag experimental nas versões atuais do Chrome para representar o shadow dom apenas com HTML da seguinte maneira:
+
+```html
+<host-element>
+  <template shadowroot="open">
+    <slot></slot>
+  </template>
+  <h2>Light content</h2>
+</host-element>
+```
+
+Se inspecionarmos o DOM no Chrome após o carregamento da página:
+
+```
+<host-element>
+  #shadow-root (open)
+  <slot>
+    ↳
+    <h2>Light content</h2>
+  </slot>
+</host-element>
+```
+
+Vocês podem encontrar mais informações sobre declarative shadow dom neste [post](https://web.dev/declarative-shadow-dom/). Apesar de termos esta proposta em andamento, até muito recentemente isto não era possível, tornando a tarefa de realizar server side rendering com web components algo praticamente inviável.
+
+## Conclusão
+
+Assim como não era tão comum usar JavaScript puro há alguns anos atrás devido as diferenças nas APIs dos navegadores, hoje temos uma linguagem muito mais madura (parte graças aos  aprendizados com as tecnologias do passado) e uma padronização maior entre os navegadores. Acredito que os web components estejam no mesmo caminho, a comunidade está amadurecendo o modelo de componentes com bibliotecas e frameworks da atualidade para, posteriormente, incorporarmos para os padrões oficiais.
+
+Inclusive li um artigo ano passado com sugestões para uma v2 dos web components partindo de aprendizados das bibliotecas e frameworks atuais:
+
+https://tbranyen.com/post/web-components-v2-wish-list
+
+Apesar dos pontos citados acima, existem diversos cenários onde é vantajoso escolher esta tecnologia, mas isto é um assunto para uma outra postagem. Espero que tenham gostado, qualquer dúvida ou sugestões comentem abaixo, abraços e até mais.
