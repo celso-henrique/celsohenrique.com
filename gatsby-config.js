@@ -8,7 +8,7 @@ module.exports = {
     siteImage: `/banner.jpg`,
     siteTitleAlt: `Celso Henrique`,
     siteHeadline: `Celso Henrique`,
-    siteDescription: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
+    siteDescription: `Boas-vindas ao meu blog. Sou engineering lead na Creditas, desenvolvedor, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
     siteUrl: `https://celsohenrique.com`,
     siteLanguage: `pt-br`,
     author: `@celsohenrique_`
@@ -55,7 +55,7 @@ module.exports = {
       options: {
         name: `Celso Henrique`,
         short_name: `Celso Henrique`,
-        description: `Seja muito bem-vindo ao meu blog. Sou gerente de engenharia no Grupo ZAP, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
+        description: `Boas-vindas ao meu blog. Sou engineering lead na Creditas, desenvolvedor, instrutor, palestrante e pai do Vicente. Aqui escrevo sobre tecnologia, programação, cultura, a web, meu cotidiano e mais.`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#2d3748`,
