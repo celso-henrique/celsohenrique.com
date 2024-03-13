@@ -1,6 +1,8 @@
-celsohenrique.com
+celsohenrique.com [deprecated]
 ====================
-Source code of my personal blog [celsohenrique.com](https://celsohenrique.com). Forked from [Gatsby Minimal Blog](https://github.com/LekoArts/gatsby-starter-minimal-blog) and using [LekoArts Theme](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-minimal-blog).
+This version has been deprecated and now my personal website uses a new version which is in a private repository.
+
+Source code of my personal blog [celsohenrique.com](https://celsohenrique.com). Forked from [Gatsby Minimal Blog](https://github.com/LekoArts/gatsby-starter-minimal-blog) and using [LekoArts Theme](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-minimal-blog). 
 
 # Running locally
 With `node` installed install the dependencies with:
